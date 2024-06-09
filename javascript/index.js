@@ -58,10 +58,10 @@ function showSelectedCityTime() {
 
     // Check if "My Current City" is selected
     if (selectedCity === "current") {
+        // Set cityName to "My Current City"
+        cityName = "My Current City";
         // Get the timezone based on the user's current location
         selectedCity = moment.tz.guess();
-        // Split the timezone to get the city name
-        cityName = selectedCity.split("/")[1].replace("_", " ");
     } else {
         // Split the selected city value to get the timezone
         cityName = selectedCity.split("/")[1];
@@ -75,7 +75,7 @@ function showSelectedCityTime() {
     let formattedDate = cityTime.format("MMMM Do YYYY");
     
     // Display the city time and date with the city name
-    alert(`Current time in ${cityName}: ${formattedTime}\nDate: ${formattedDate}`);
+    openCityPage(selectedCity);
 }
 
 // Function to update current city/time
@@ -100,6 +100,21 @@ function updateCity(event) {
         // Append the city element to the container
         document.querySelector(".container").appendChild(cityElement);
     }
+}
+
+// Function to open a new page with selected city's time
+function openCityPage(cityTimeZone) {
+    let cityName = cityTimeZone.split("/").pop().replace("_", " ");
+    let cityTime = moment().tz(cityTimeZone).format("MMMM Do YYYY, h:mm:ss A");
+    let cityPageContent = `
+        <h1>${cityName}</h1>
+        <p>Current time: ${cityTime}</p>
+        <a href="/">Return to homepage</a>
+    `;
+    // Open a new page with the city's time
+    let cityPage = window.open("", "_blank");
+    cityPage.document.write(cityPageContent);
+    cityPage.document.close();
 }
 
 // Initial call to updateTime function to display the initial time

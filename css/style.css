@@ -63,8 +63,18 @@ select {
 
 
 
-footer {
+.footer {
     text-align: center;
     font-size: 18px;
     color: rgba(0, 0, 0, 0.6);
+}
+
+.return-to-home {
+    text-align: left;
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.6);
+}
+.return-to-home:hover {
+    cursor: pointer;
+    color:blueviolet
 }

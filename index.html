@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="css/style.css">
     <title>World Clock</title>
     <!-- Include Moment.js and Moment Timezone -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.37/moment-timezone-with-data-1970-2030.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>World Clock</h1>
-        
+
         <select id="city">
             <option value="">Select a city...</option>
             <option value="current">My current location</option>
@@ -20,6 +20,9 @@
             <option value="Europe/London">London</option>
             <option value="Pacific/Auckland">Auckland</option>
             <option value="Europe/Greece">Athens</option>
+        </select>
+
+        <div id="cities">
         </select>
 
         <div class="city" id="los-angeles">
@@ -61,14 +64,19 @@
                 <div class="time">22:07:15<small>AM</small></div>
             </div>
         </div>
-
-        
     </div>
+
     
+
     <footer>
-        This project was coded with 💕 by <strong>Stephanie White</strong> and is <a href="https://github.com/Stephaniechatter/Clock-Final-Project" target="_blank">open sourced on GitHub</a>
+        This project was coded with 💕 by <strong>Stephanie White</strong> and is
+        <a href="https://github.com/Stephaniechatter/Clock-Final-Project" target="_blank">
+            open sourced on GitHub
+        </a>
+        <br>
+        <a href="chattertonworldclock.netlify.app" id="return-to-home">Return to homepage</a>
     </footer>
-    
+
     <script src="javascript/index.js"></script>
 </body>
 </html>
