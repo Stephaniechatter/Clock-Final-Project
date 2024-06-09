@@ -1,3 +1,4 @@
+// Function to update time for different cities
 function updateTime() {
     // Los Angeles
     let losAngelesElement = document.querySelector("#los-angeles");
@@ -52,8 +53,19 @@ function showSelectedCityTime() {
     // If no city is selected, do nothing
     if (!selectedCity) return;
 
-    // Split the selected city value to get the timezone
-    let timeZone = selectedCity.split("/")[1];
+    // Initialize cityName variable
+    let cityName;
+
+    // Check if "My Current City" is selected
+    if (selectedCity === "current") {
+        // Get the timezone based on the user's current location
+        selectedCity = moment.tz.guess();
+        // Split the timezone to get the city name
+        cityName = selectedCity.split("/")[1].replace("_", " ");
+    } else {
+        // Split the selected city value to get the timezone
+        cityName = selectedCity.split("/")[1];
+    }
     
     // Current time in the selected city
     let cityTime = moment().tz(selectedCity);
@@ -62,8 +74,32 @@ function showSelectedCityTime() {
     let formattedTime = cityTime.format("h:mm:ss A");
     let formattedDate = cityTime.format("MMMM Do YYYY");
     
-    // Display the city time and date
-    alert(`Current time in ${timeZone}: ${formattedTime}\nDate: ${formattedDate}`);
+    // Display the city time and date with the city name
+    alert(`Current time in ${cityName}: ${formattedTime}\nDate: ${formattedDate}`);
+}
+
+// Function to update current city/time
+function updateCity(event) {
+    let cityTimeZone = event.target.value;
+    if (cityTimeZone === "current") {
+        cityTimeZone = moment.tz.guess();
+        let cityName = "Your City"; 
+        let cityTime = moment().tz(cityTimeZone);
+        
+        // Create a new city element
+        let cityElement = document.createElement("div");
+        cityElement.classList.add("city");
+        cityElement.innerHTML = `
+            <div>
+                <h2>${cityName}</h2>
+                <div class="date">${cityTime.format("MMMM Do YYYY")}</div>
+            </div>
+            <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format("A")}</small></div>
+        `;
+        
+        // Append the city element to the container
+        document.querySelector(".container").appendChild(cityElement);
+    }
 }
 
 // Initial call to updateTime function to display the initial time
